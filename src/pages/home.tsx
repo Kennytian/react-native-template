@@ -2,7 +2,7 @@ import { useFocusEffect } from '@react-navigation/native';
 import React, { PropsWithChildren, useCallback, useEffect, useState } from 'react';
 import { Button, Text, View } from 'react-native';
 
-import { DETAILS_PAGE } from '../const.ts';
+import { DETAILS_PAGE } from '../constants/const.ts';
 import { IExtraData, NavigationProps } from '../types';
 
 type HomeScreenProps = PropsWithChildren<{

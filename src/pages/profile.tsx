@@ -2,7 +2,7 @@ import { useFocusEffect } from '@react-navigation/native';
 import React, { useCallback } from 'react';
 import { Button, Text, View } from 'react-native';
 
-import { PROFILE_PAGE } from '../const.ts';
+import { PROFILE_PAGE } from '../constants/const.ts';
 import { NavigationProps } from '../types';
 
 export default function ProfileScreen({ navigation }: NavigationProps): React.JSX.Element {

@@ -2,14 +2,15 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { NavigationContainer, Theme } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import React from 'react';
-import { useColorScheme } from 'react-native';
+import { Image, ImageSourcePropType, useColorScheme } from 'react-native';
 import { Colors } from 'react-native/Libraries/NewAppScreen';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 
+import { APP_NAME, DETAILS_PAGE, HOME_PAGE, PROFILE_PAGE } from './constants/const.ts';
+import Images from './constants/images.ts';
 import DetailsScreen from './pages/detail.tsx';
 import HomeScreen from './pages/home.tsx';
 import ProfileScreen from './pages/profile.tsx';
-import { APP_NAME, DETAILS_PAGE, HOME_PAGE, PROFILE_PAGE } from './const.ts';
 import { IExtraData } from './types';
 
 const Stack = createNativeStackNavigator();
@@ -26,6 +27,10 @@ const themeColorSwitcher = (isDark: boolean): Theme['colors'] => {
   };
 };
 
+function Icon(props: { source: ImageSourcePropType | undefined }) {
+  return <Image source={props.source} style={{ width: 24, height: 24 }} />;
+}
+
 function Home() {
   const someData: IExtraData = { name: 'John Doe', age: 30 };
   return (
@@ -37,10 +42,24 @@ function Home() {
         tabBarBadgeStyle: { backgroundColor: Colors.primary },
       }}
     >
-      <Tab.Screen name={HOME_PAGE.name} options={{ title: HOME_PAGE.title, tabBarBadge: 1 }}>
+      <Tab.Screen
+        name={HOME_PAGE.name}
+        options={{
+          title: HOME_PAGE.title,
+          tabBarBadge: undefined,
+          tabBarIcon: ({ focused }) => (focused ? <Icon source={Images.home_focused} /> : <Icon source={Images.home} />),
+        }}
+      >
         {(props) => <HomeScreen {...props} extraData={someData} />}
       </Tab.Screen>
-      <Tab.Screen name={PROFILE_PAGE.name} options={{ title: PROFILE_PAGE.title }} component={ProfileScreen} />
+      <Tab.Screen
+        name={PROFILE_PAGE.name}
+        options={{
+          title: PROFILE_PAGE.title,
+          tabBarIcon: ({ focused }) => (focused ? <Icon source={Images.profile_focused} /> : <Icon source={Images.profile} />),
+        }}
+        component={ProfileScreen}
+      />
     </Tab.Navigator>
   );
 }

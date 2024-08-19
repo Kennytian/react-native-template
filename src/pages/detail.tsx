@@ -2,7 +2,7 @@ import { useFocusEffect } from '@react-navigation/native';
 import React, { useCallback } from 'react';
 import { Button, Text, View } from 'react-native';
 
-import { HOME_PAGE } from '../const.ts';
+import { HOME_PAGE } from '../constants/const.ts';
 import { NavigationProps } from '../types';
 
 export default function DetailsScreen({ navigation }: NavigationProps): React.JSX.Element {
